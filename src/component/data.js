@@ -1,5 +1,3 @@
-
-
 const days = [
     'Monday',
     'Teusday',
@@ -8,6 +6,16 @@ const days = [
     'Friday',
     'Saturday',
     'Sunday'
+]
+
+const prefixDays =[
+    'Mon',
+    'Teu',
+    'Wed',
+    'Thur',
+    'Fri',
+    'Sat',
+    'Sun'
 ]
 
 const months = [
@@ -23,6 +31,11 @@ const months = [
     "October",
     "November",
     "December"
-    ];
+];
 
-export {days, months}
+const times = []
+for (let i = 1; i < 13; i++) {
+    times.push(i)
+}
+
+export { days, months, times, prefixDays }
