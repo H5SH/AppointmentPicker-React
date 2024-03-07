@@ -4,6 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 
 function AppointmentCalendar(){
     const [value, setValue] = useState(new Date())
+    console.log(value)
 
     return (
         <div>

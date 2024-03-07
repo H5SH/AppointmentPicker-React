@@ -1,0 +1,20 @@
+
+.timeInputs{
+    border: none;
+    border-color: transparent;
+    border-width: 20px;
+    color: white;
+    text-decoration: none;
+
+}
+
+.timeInputs:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.slotsdiv {
+    flex: auto;
+    flex-direction: row;
+}
+
