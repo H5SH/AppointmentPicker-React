@@ -5,12 +5,17 @@
     border-width: 20px;
     color: white;
     text-decoration: none;
-
 }
 
+/* page color: #f1f1f4 */
+
 .timeInputs:hover {
-    color: black;
+    border-color: black;
+    color: rgb(70, 70, 183);
     text-decoration: none;
+    border-style: groove;
+    border-width: 1px;
+    border-radius: 4px;
 }
 
 .slotsdiv {

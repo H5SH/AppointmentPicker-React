@@ -8,7 +8,7 @@ const days = [
     'Sunday'
 ]
 
-const prefixDays =[
+const prefixDays = [
     'Mon',
     'Teu',
     'Wed',
@@ -33,9 +33,20 @@ const months = [
     "December"
 ];
 
-const times = []
-for (let i = 1; i < 13; i++) {
-    times.push(i)
+function times(start, end) {
+    const times = []
+    for (let i = start; i <= end; i++) {
+        times.push(i)
+    }
+    return times
 }
 
-export { days, months, times, prefixDays }
+function skips(gap){
+    const gaps = [0]
+    let min = 0
+    for(let i = 0; i < (60/gap - 1); i++){
+        gaps.push(min += gap)
+    }
+    return gaps
+}
+export { days, months, times, prefixDays, skips }
