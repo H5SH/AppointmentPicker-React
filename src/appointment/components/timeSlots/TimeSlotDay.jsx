@@ -51,7 +51,13 @@ function TimeSlotDay({ displayOnlyTime, displayOnlyHover = false, day, start = 8
                         }} >
                             {!displayOnlyHover &&
                                 <div className={`border border-1 bg-white ${displayOnlyTime ? 'col' : 'col-1 text-center'}`}>
-                                    {`${time}:${pad(gap)}`}
+                                    {index === 0 ?
+                                        <>
+                                            <h6 style={{ display: 'inline' }}>{pad(time)}</h6>:{pad(gap)}
+                                        </> :
+                                        <div className='ps-4'>
+                                            {`:${pad(gap)}`}
+                                        </div>}
                                 </div>
                             }
                             {!displayOnlyTime &&
