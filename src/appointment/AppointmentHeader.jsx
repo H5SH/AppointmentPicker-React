@@ -1,27 +1,30 @@
-import { months, days } from "./components/data"
+import { months, prefixMonths, days, getFirstAndLastDate, prefixDays } from "./components/data"
 
-function AppointmentHeader({ showWeeks, setShowWeeks, appointmentDate, setShowSideBar, showSideBar }) {
-
+function AppointmentHeader({ showWeeks, setShowWeeks, appointmentDate, setShowSideBar, showSideBar, last, first }) {
 
     return (
         <div className='row bg-light p-4'>
-            <div className="col-1">
+            <div className="col-3">
                 <button className="btn btn-dark justify-content-center" onClick={() => setShowSideBar(!showSideBar)}>
-                    <i className="fas fa-bars"></i>
-                </button>
+                    <i className="fas fa-bars fs-2"></i>
+                </button> &nbsp; 
+                <a className="btn btn-primary" onClick={() => window.location.reload()}><i className="bi bi-bootstrap-reboot fs-2"></i></a>
             </div>
-            <div className='col-2'>
-                <a className="btn btn-primary"><i className="bi bi-search fs-8 p-0"></i></a>
-            </div>
-            {showWeeks ?
-                <h1 className='col'>{`${months[appointmentDate.getMonth()]} ${appointmentDate.getFullYear()}`}</h1> :
-                <h1 className='col'>{`${days[appointmentDate.getDay() - 1]} ${months[appointmentDate.getMonth()]} ${appointmentDate.getDate()} ${appointmentDate.getFullYear()}`}</h1>}
 
-            <div className="col-1" onClick={()=> window.location.reload()}>
-                <a className="btn btn-primary"><i className="bi bi-bootstrap-reboot"></i></a>
+            <div className='col-7'>
+                <span class="card-label fw-bold fs-1 mb-1">
+                    {showWeeks ?
+                        `${prefixMonths[first.getMonth()]} ${first.getDate()} - ${first.getMonth() !== last.getMonth() ? prefixMonths[last.getMonth()] : ''} ${last.getDate()} ${appointmentDate.getFullYear()}`
+                    :
+                        `${prefixDays[appointmentDate.getDay()]}, ${months[appointmentDate.getMonth()]} ${appointmentDate.getDate()} ${appointmentDate.getFullYear()}`
+                    }
+                </span>
             </div>
-            <button onClick={() => setShowWeeks(false)} className='bg-primary border-0 text-light rounded me-2 col-1'>Days</button>
-            <button onClick={() => setShowWeeks(true)} className='bg-primary border-0 text-light rounded me-2 col-1'>Week</button>
+        
+            <div className="col-2">
+                <button onClick={() => setShowWeeks(false)} className={`btn btn-light ${!showWeeks && 'active'} border border-1 rounded rounded-start`}>Days</button>  &nbsp; &nbsp;
+                <button onClick={() => setShowWeeks(true)} className={`btn btn-light ${showWeeks && 'active'} border border-1 rounded rounded-end me-2`}>Week</button>
+            </div>
         </div>
     )
 }

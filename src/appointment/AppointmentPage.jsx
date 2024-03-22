@@ -5,7 +5,7 @@ import {Routes, Route} from 'react-router-dom'
 
 const appointmentBreadCrumbs = [
     {
-        title: 'Appointment',
+        title: 'Appointments',
         path: '/appointment/book',
         isSeparator: false,
         isActive: false
@@ -21,10 +21,10 @@ const appointmentBreadCrumbs = [
 const AppoinmentPage = () => (
     <Routes>
         <Route
-        path='book'
+        path='create'
         element={
             <>
-            <PageTitle breadcrumbs={appointmentBreadCrumbs}>Appointment</PageTitle>
+            <PageTitle breadcrumbs={appointmentBreadCrumbs}>Appointments</PageTitle>
             <AppointmentMain />
             </>
         } 
