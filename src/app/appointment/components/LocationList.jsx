@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import Select from 'react-select'
-import { setDataContext } from '../../../utilities/SettingContext'
+import { appointmentContext } from '../../context'
 
 function LocationList({locations}){
 
-    const {appointmentLocation, setAppointmentLocation} = useContext(setDataContext)
+    const {appointmentLocation, setAppointmentLocation} = useContext(appointmentContext)
 
     const formatLocationLabel = ({name})=> (
         <div>

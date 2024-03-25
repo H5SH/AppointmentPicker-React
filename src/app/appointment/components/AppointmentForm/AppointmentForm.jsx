@@ -1,10 +1,7 @@
 import { useContext, useEffect, useState } from "react"
-import { setDataContext } from "../../../../utilities/SettingContext"
-import { days, months } from "../data"
 import SubmitButton, { GotoBackButton } from "../../../../utilities/SubmitButton"
 import { Field, Formik, Form, ErrorMessage } from "formik"
 import { initialValues, reasonsForVisit, validation } from "../__request/initialValuesAndValidation"
-import { addAppointmentReq } from "../__request/appointmentRequest"
 import Select from 'react-select'
 import { getFacilitiesDataReq } from "../../../organization/components/facilities/__request/RequestFacility"
 import { getProviderReq } from "../../../providers/__request/RequestProvider"
@@ -12,11 +9,12 @@ import { getPatientDataReq } from "../../../patients/__request/RequestPatient"
 import { pad } from "../../../../utilities/Helper"
 import { DrawerHeader } from "../../../../utilities/DrawerHeader"
 import { useDispatch, useSelector } from "react-redux"
-import { editAppointmentIdAction } from "../../../../redux/action"
+// import { editAppointmentIdAction } from "../../../../redux/action"
+import { appointmentContext } from "../../../context"
 
 
 function AppointmentForm() {
-    const { appointmentDate, appointmentTime, appointmentDay, appointmentProvider, appointmentLocation} = useContext(setDataContext)
+    const { appointmentDate, appointmentTime, appointmentDay, appointmentProvider, appointmentLocation} = useContext(appointmentContext)
     const appointmentId = useSelector((state)=> state.appointmentIdEditReducer)
     const dispatch = useDispatch()
     const [hours, min] = appointmentTime.time.split(':')
@@ -83,16 +81,16 @@ function AppointmentForm() {
     )
 
     useEffect(() => {
-        getFacilitiesData()
-        getProvider()
-        getPatientData()
+        // getFacilitiesData()
+        // getProvider()
+        // getPatientData()
     }, [])
 
-    useEffect(()=> {
-        if(appointmentId > 0){
-            getAppointment()
-        }
-    },[appointmentId])
+    // useEffect(()=> {
+    //     if(appointmentId > 0){
+    //         getAppointment()
+    //     }
+    // },[appointmentId])
 
 
     return (
@@ -144,7 +142,7 @@ function AppointmentForm() {
                                         {/* <h2 className="pb-4">Patient Information</h2> */}
                                         <div className="col-4">
                                             <label className="form-label">Patient</label>
-                                            <Select
+                                            {/* <Select
                                                 options={patients}
                                                 formatOptionLabel={customLabelProvider}
                                                 onChange={(patient) => patient ?
@@ -168,7 +166,7 @@ function AppointmentForm() {
                                                 getOptionValue={(option) => option.full_name}
                                                 isSearchable
                                                 isClearable
-                                            />
+                                            /> */}
                                             <dic className='text-danger'>{response}</dic>
                                         </div>
                                         <div className="col-3">
@@ -200,7 +198,7 @@ function AppointmentForm() {
                                         {/* <h2 className="pt-4 pb-4">Appointment Information</h2> */}
                                         <div className="col-4">
                                             <label className="form-label required">Office Name</label>
-                                            <Select
+                                            {/* <Select
                                                 options={facilities}
                                                 formatOptionLabel={customLabelFacilities}
                                                 onChange={(facility) => {
@@ -216,7 +214,7 @@ function AppointmentForm() {
                                                 }}
                                                 isSearchable
                                                 isClearable
-                                            />
+                                            /> */}
                                             <ErrorMessage name='facility_id'>
                                                 {msg => <div className="text-danger">{msg}</div>}
                                             </ErrorMessage>
@@ -224,7 +222,7 @@ function AppointmentForm() {
 
                                         <div className="col-4">
                                             <label className="form-label required">With</label>
-                                            <Select
+                                            {/* <Select
                                                 options={providers}
                                                 formatOptionLabel={customLabelProvider}
                                                 onChange={(provider) => {
@@ -240,7 +238,7 @@ function AppointmentForm() {
                                                 }}
                                                 isSearchable
                                                 isClearable
-                                            />
+                                            /> */}
                                             <ErrorMessage name='provider_id'>
                                                 {msg => <div className="text-danger">{msg}</div>}
                                             </ErrorMessage>
@@ -248,7 +246,7 @@ function AppointmentForm() {
 
                                         <div className="col-3">
                                             <label className="form-label required">Visit Reason</label>
-                                            <Select
+                                            {/* <Select
                                                 options={reasonsForVisit}
                                                 formatOptionLabel={customLabelFacilities}
                                                 onChange={(reason) => setValues({
@@ -262,7 +260,7 @@ function AppointmentForm() {
                                                 }}
                                                 isSearchable
                                                 isClearable
-                                            />
+                                            /> */}
                                             <ErrorMessage name="visit_reason">
                                                 {msg => <div className="text-danger">{msg}</div>}
                                             </ErrorMessage>
@@ -330,12 +328,12 @@ function AppointmentForm() {
                                 className="p-8 py-5 d-flex justify-content-between bottom-0"
                                 id='kt_appointment_footer'
                             >
-                                <SubmitButton
+                                {/* <SubmitButton
                                     title='Book'
                                     callback_event={handleSubmit}
                                     class_name='btn btn-primary'
                                 />
-                                <GotoBackButton id={'kt_appointment_close'} />
+                                <GotoBackButton id={'kt_appointment_close'} /> */}
                             </div>
                         </Form>
                     )}

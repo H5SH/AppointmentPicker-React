@@ -3,21 +3,18 @@ import TimeSlotWeek from './components/timeSlots/TimeSlotWeek';
 import { useContext, useEffect, useState } from 'react';
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
-import { days, getFirstAndLastDate, months } from './components/data';
+import { days, getFirstAndLastDate } from './components/data';
 import AppointmentForm from './components/AppointmentForm/AppointmentForm';
-import { setDataContext } from '../../utilities/SettingContext';
-import { getProviderReq } from '../providers/__request/RequestProvider';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import ProvidersList from './components/ProvidersList';
 import AppointmentHeader from './AppointmentHeader';
-import Select from 'react-select';
-import { getFacilitiesDataReq } from '../organization/components/facilities/__request/RequestFacility';
 import LocationList from './components/LocationList';
 import { providerAppointment } from './components/data';
+import { appointmentContext } from '../context';
 
 function AppointmentMain() {
 
-    const { appointmentDate, setAppointmentDate, appointmentProvider } = useContext(setDataContext)
+    const { appointmentDate, setAppointmentDate, appointmentProvider } = useContext(appointmentContext)
     const [showWeeks, setShowWeeks] = useState(false)
     const [showSideBar, setShowSideBar] = useState(true)
     const [providers, setProviders] = useState(null)
@@ -25,16 +22,16 @@ function AppointmentMain() {
     const [gap, setGap] = useState({'label': 15})
     const {first, last} = getFirstAndLastDate(appointmentDate)
 
-    async function providersList() {
-        try {
-            // later 2 parameters are to make sure that we hit provider api
-            const response = await getProviderReq('rendering', 0, { text: '', field: 'first_name' })
-            setProviders(response.data.data)
-        } catch (err) {
-            console.log(err)
-            toast.error("Failed To Load Provider Try Again")
-        }
-    }
+    // async function providersList() {
+    //     try {
+    //         // later 2 parameters are to make sure that we hit provider api
+    //         const response = await getProviderReq('rendering', 0, { text: '', field: 'first_name' })
+    //         setProviders(response.data.data)
+    //     } catch (err) {
+    //         console.log(err)
+    //         toast.error("Failed To Load Provider Try Again")
+    //     }
+    // }
 
     async function getFacilitiesData(){
         const response = await getFacilitiesDataReq()
@@ -42,8 +39,8 @@ function AppointmentMain() {
     }
 
     useEffect(() => {
-        providersList()
-        getFacilitiesData()
+        // providersList()
+        // getFacilitiesData()
     }, [])
 
     return (
@@ -74,12 +71,12 @@ function AppointmentMain() {
                                 
                                 <div className="mb-10 fv-row">
                                     <label className="form-label mb-3">Location</label>
-                                    <LocationList locations={facilities}/>
+                                    {/* <LocationList locations={facilities}/> */}
                                 </div>
 
                                 <div className="mb-10 fv-row">
                                     <label className="form-label mb-3">Providers</label>
-                                    {providers && <ProvidersList providers={providers} />}
+                                    {/* {providers && <ProvidersList providers={providers} />} */}
                                 </div>
 
                             </div>

@@ -1,10 +1,11 @@
 import { setDataContext } from "../../../utilities/SettingContext"
 import { useContext, useEffect } from "react"
 import Select from 'react-select'
+import { appointmentContext } from "../../context"
 
 function ProvidersList({ providers }) {
 
-    const {appointmentProvider ,setAppointmentProvider} = useContext(setDataContext)
+    const {appointmentProvider ,setAppointmentProvider} = useContext(appointmentContext)
 
     const formateProviderLabel= ({full_name})=> (
         <div>

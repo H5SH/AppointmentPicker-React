@@ -1,13 +1,13 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { skips, timeComparer, times } from '../data'
 import { pad } from '../../../../utilities/Helper'
 import './timeslots.css'
-import { setDataContext } from '../../../../utilities/SettingContext'
 import { useDispatch } from 'react-redux'
 import { editAppointmentIdAction } from '../../../../redux/action'
+import { appointmentContext } from '../../../context'
 
 function TimeSlotDay({ displayOnlyTime, displayOnlyHover = false, day, start = 8, end = 17, skip = 15, providerAppointments }) {
-    const { setAppointmentTime, setAppointmentDay } = useContext(setDataContext)
+    const { setAppointmentTime, setAppointmentDay } = useContext(appointmentContext)
     // times take start and end time and returns an array of hours
     const slots = times(start, end)
     const gaps = skips(skip)
